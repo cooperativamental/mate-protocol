@@ -1,7 +1,25 @@
-import '../styles/globals.css'
+import Head from "next/head"
+import Layout from "../components/Layout";
+import "../styles/globals.css";
+import WalletContextProvider from "../context/WalletContext";
+import { PopUpProvider } from "../context/PopUp";
+import { Analytics } from '@vercel/analytics/react';
 
-function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
-}
+const MyApp = ({ Component, pageProps }) => {
 
-export default MyApp
+  return (
+
+    <WalletContextProvider>
+      <PopUpProvider>
+        <Layout>
+          <Component {...pageProps} />
+          <Analytics />
+        </Layout>
+      </PopUpProvider>
+    </WalletContextProvider>
+  )
+
+
+};
+
+export default MyApp;
